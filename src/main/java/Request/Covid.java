@@ -29,7 +29,7 @@ public class Covid extends ResponseWithSendMessage{
     public void goForCallbackQuery(TelegramLongPollingBot bot, Update update, String chatId, String data) {
         try {
             String result = Covid.covid(data);
-            bot.execute(send(chatId, result));
+            bot.execute(createMessage(chatId, result));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (TelegramApiException e) {

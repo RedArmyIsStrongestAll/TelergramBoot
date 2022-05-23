@@ -1,26 +1,27 @@
 package Request;
 
-import KeysForRequest.CoursesKeys;
+import KeysForRequest.TimeKeys;
+import KeysForRequest.WeatherSityKeys;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.IOException;
 import java.net.URL;
 
-public class Courses extends ResponseWithSendMessage{
+public class Time extends ResponseWithSendMessage{
     @Override
     public void go(TelegramLongPollingBot bot, Update update) {
         String chatId = update.getMessage().getChatId().toString();
-        CoursesKeys ck = new CoursesKeys();
-        SendMessage keysMessage = ck.sendInlineKeyBoardMessage(chatId);
+        TimeKeys tk = new TimeKeys();
+        SendMessage message = tk.sendInlineKeyBoardMessage(chatId);
         try {
-            bot.execute(keysMessage);
+            bot.execute(message);
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
@@ -28,13 +29,15 @@ public class Courses extends ResponseWithSendMessage{
 
     @Override
     public String name() {
-        return "Курс";
+        return "Время";
     }
 
     @Override
     public void goForCallbackQuery(TelegramLongPollingBot bot, Update update, String chatId, String data) {
         try {
-            String result = Courses.course(data);
+            System.out.println(data);
+            String result = Time.weather(data);
+            System.out.println(data);
             bot.execute(createMessage(chatId, result));
         } catch (IOException e) {
             e.printStackTrace();
@@ -49,10 +52,11 @@ public class Courses extends ResponseWithSendMessage{
         return page;
     }
 
-    public static String course(String cur) throws IOException {
-        Document document = getPage("https://ru.investing.com/currencies/" + cur + "-rub");
-        Element course = document.select("div[class=instrument-price_instrument-price__3uw25 flex items-end flex-wrap font-bold]").first();
-        String ourCourse = course.select("span[class=text-2xl]").text();
-        return ourCourse;
+    public static String weather(String city) throws IOException {
+        Document document = getPage("https://yandex.ru/search/?text=время+в+" + city);
+        Element tempEl = document.select("a[class=link link_theme_black i-bem]").first();
+        String weat = tempEl.select("a[class=link link_theme_black i-bem]").text();
+
+        return weat;
     }
 }

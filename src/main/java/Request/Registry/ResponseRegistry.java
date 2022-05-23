@@ -22,6 +22,8 @@ public class ResponseRegistry {
         listResponse.add(new ByeReqest());
         listResponse.add(new Covid());
         listResponse.add(new Courses());
+        listResponse.add(new Weather());
+        listResponse.add(new Time());
     }
 
     public int getSizeListResponse(){

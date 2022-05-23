@@ -7,7 +7,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 import java.util.ArrayList;
 import java.util.List;
 
-public class CovidCountryKeys {
+public class TimeKeys {
     public static SendMessage sendInlineKeyBoardMessage(String chatId) {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
 
@@ -25,24 +25,24 @@ public class CovidCountryKeys {
         InlineKeyboardButton inlineKeyboardButton8 = new InlineKeyboardButton();
         InlineKeyboardButton inlineKeyboardButton9 = new InlineKeyboardButton();
 
-        inlineKeyboardButton1.setText("США");
-        inlineKeyboardButton1.setCallbackData("ssha");
-        inlineKeyboardButton2.setText("РОССИЯ");
-        inlineKeyboardButton2.setCallbackData("rossiya");
-        inlineKeyboardButton3.setText("Германия");
-        inlineKeyboardButton3.setCallbackData("germaniya");
-        inlineKeyboardButton4.setText("Вьетнам");
-        inlineKeyboardButton4.setCallbackData("vietnam");
-        inlineKeyboardButton5.setText("Италия");
-        inlineKeyboardButton5.setCallbackData("italiya");
-        inlineKeyboardButton6.setText("Тайвань");
-        inlineKeyboardButton6.setCallbackData("taivan");
-        inlineKeyboardButton7.setText("Франция");
-        inlineKeyboardButton7.setCallbackData("frantsiya");
-        inlineKeyboardButton8.setText("Корея (южная)");
-        inlineKeyboardButton8.setCallbackData("yuzhnaya-koreya");
-        inlineKeyboardButton9.setText("Польша");
-        inlineKeyboardButton9.setCallbackData("polsha");
+        inlineKeyboardButton1.setText("Париж");
+        inlineKeyboardButton1.setCallbackData("Paris");
+        inlineKeyboardButton2.setText("Рим");
+        inlineKeyboardButton2.setCallbackData("Rome");
+        inlineKeyboardButton3.setText("Венеция");
+        inlineKeyboardButton3.setCallbackData("Vence");
+        inlineKeyboardButton4.setText("Рио-де-Жанейро");
+        inlineKeyboardButton4.setCallbackData("Rio");
+        inlineKeyboardButton5.setText("Стамбул");
+        inlineKeyboardButton5.setCallbackData("Istanbul");
+        inlineKeyboardButton6.setText("Нью-Йорк");
+        inlineKeyboardButton6.setCallbackData("New-York");
+        inlineKeyboardButton7.setText("Амстердам");
+        inlineKeyboardButton7.setCallbackData("Amsterdam");
+        inlineKeyboardButton8.setText("Прага");
+        inlineKeyboardButton8.setCallbackData("Prague");
+        inlineKeyboardButton9.setText("Ярик");
+        inlineKeyboardButton9.setCallbackData("Yaroslav");
 
         keyboardButtonsRow1.add(inlineKeyboardButton1);
         keyboardButtonsRow1.add(inlineKeyboardButton2);
@@ -62,7 +62,7 @@ public class CovidCountryKeys {
 
         SendMessage message = new SendMessage();
         message.setChatId(chatId);
-        message.setText("Страны");
+        message.setText("Города");
         message.setReplyMarkup(inlineKeyboardMarkup);
         return message;
     }

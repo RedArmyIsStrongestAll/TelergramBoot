@@ -16,7 +16,7 @@ public abstract class ResponseWithSendMessage implements  Response {
 
     protected StartKeys startKey = new StartKeys();
 
-    protected SendMessage send(String chatId, String inputText) {
+    protected SendMessage createMessage(String chatId, String inputText) {
         SendMessage message = new org.telegram.telegrambots.meta.api.methods.send.SendMessage();
         message.setChatId(chatId);
         message.setText(inputText);

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StartKeys {
-    public void setButton(SendMessage sendMassage){
+    public static void setButton(SendMessage sendMassage){
         ReplyKeyboardMarkup replykeyboardmarkup = new ReplyKeyboardMarkup(); //создание клавы самой по себе
         sendMassage.setReplyMarkup(replykeyboardmarkup); //установка кнопок
         replykeyboardmarkup.setSelective(true); // клавиатура видна всем а не конкретному пользователю
@@ -26,6 +26,10 @@ public class StartKeys {
         keyFirstRow2.add(new KeyboardButton("Коронавирус"));
         keyFirstRow2.add(new KeyboardButton("Курс"));
         keyRaw.add(keyFirstRow2);
+        KeyboardRow keyFirstRow3 = new KeyboardRow();
+        keyFirstRow3.add(new KeyboardButton("Погода"));
+        keyFirstRow3.add(new KeyboardButton("Время"));
+        keyRaw.add(keyFirstRow3);
 
         replykeyboardmarkup.setKeyboard(keyRaw);
     }

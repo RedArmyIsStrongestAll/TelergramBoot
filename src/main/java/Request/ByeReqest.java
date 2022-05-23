@@ -9,7 +9,7 @@ public class ByeReqest extends ResponseWithSendMessage {
     public void go(TelegramLongPollingBot bot, Update update) {
         String chatId = update.getMessage().getChatId().toString();
         try {
-            bot.execute(send(chatId, "Пока-с, " + update.getMessage().getFrom().getFirstName()));
+            bot.execute(createMessage(chatId, "Пока-с, " + update.getMessage().getFrom().getFirstName()));
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
