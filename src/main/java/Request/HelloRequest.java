@@ -18,4 +18,9 @@ public class HelloRequest extends ResponseWithSendMessage {
         public String name() {
                 return "Привет";
         }
+
+        @Override
+        public void goForCallbackQuery(TelegramLongPollingBot bot, Update update, String chatId, String data) {
+
+        }
 }

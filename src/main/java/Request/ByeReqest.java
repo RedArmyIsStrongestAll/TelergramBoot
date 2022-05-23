@@ -18,4 +18,9 @@ public class ByeReqest extends ResponseWithSendMessage {
     public String name() {
         return "Пока";
     }
+
+    @Override
+    public void goForCallbackQuery(TelegramLongPollingBot bot, Update update, String chatId, String data) {
+
+    }
 }

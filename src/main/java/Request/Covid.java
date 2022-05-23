@@ -1,13 +1,11 @@
 package Request;
 
-import KeysForRequest.RateKeys;
+import KeysForRequest.CovidCountry;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
-import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
@@ -18,7 +16,7 @@ public class Covid extends ResponseWithSendMessage{
     @Override
     public void go(TelegramLongPollingBot bot, Update update) {
         String chatId = update.getMessage().getChatId().toString();
-        RateKeys rk = new RateKeys();
+        CovidCountry rk = new CovidCountry();
         SendMessage keysMessage = rk.sendInlineKeyBoardMessage(chatId);
         try {
             bot.execute(keysMessage);
@@ -27,6 +25,18 @@ public class Covid extends ResponseWithSendMessage{
                 System.out.println("in class");
             }
 
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void goForCallbackQuery(TelegramLongPollingBot bot, Update update, String chatId, String data) {
+        try {
+            String result = Covid.covid(data);
+            bot.execute(send(chatId, result));
+        } catch (IOException e) {
+            e.printStackTrace();
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }

@@ -11,6 +11,9 @@ public abstract class ResponseWithSendMessage implements  Response {
     @Override
     public abstract String name();
 
+    @Override
+    public abstract void goForCallbackQuery(TelegramLongPollingBot bot, Update update, String chatId, String data);
+
     protected StartKeys startKey = new StartKeys();
 
     protected SendMessage send(String chatId, String inputText) {
