@@ -15,11 +15,21 @@
 
     <dependencies>
 
-            <dependency>
+            <!--<dependency>
                 <groupId>org.telegram</groupId>
                 <artifactId>telegrambots</artifactId>
                 <version>6.0.1</version>
-            </dependency>
+            </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/org.telegram/telegrambots -->
+        <dependency>
+            <groupId>org.telegram</groupId>
+            <artifactId>telegrambots</artifactId>
+            <version>6.0.0</version>
+        </dependency>
+
+
+
 
         <dependency>
             <!-- jsoup HTML parser library @ https://jsoup.org/ -->

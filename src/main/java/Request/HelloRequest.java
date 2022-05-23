@@ -9,7 +9,7 @@ public class HelloRequest extends ResponseWithSendMessage {
         public void go(TelegramLongPollingBot bot, Update update){
                 String chatId = update.getMessage().getChatId().toString();
                 try {
-                        bot.execute(send(chatId, "Здорова, ёпт, " + update.getMessage().getFrom().getFirstName()));
+                        bot.execute(send(chatId, "Привет, " + update.getMessage().getFrom().getFirstName()));
                 } catch (TelegramApiException e) {
                         e.printStackTrace();
                 }

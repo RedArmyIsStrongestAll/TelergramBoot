@@ -1,13 +1,15 @@
 package Request;
 
-import Request.KeysForRequest.RateKeys;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-
+import KeysForRequest.RateKeys;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
+import org.telegram.telegrambots.meta.api.objects.Message;
+import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.IOException;
 import java.net.URL;
@@ -16,36 +18,18 @@ public class Covid extends ResponseWithSendMessage{
     @Override
     public void go(TelegramLongPollingBot bot, Update update) {
         String chatId = update.getMessage().getChatId().toString();
+        RateKeys rk = new RateKeys();
+        SendMessage keysMessage = rk.sendInlineKeyBoardMessage(chatId);
         try {
-            RateKeys rk = new RateKeys();
-            bot.execute(rk.sendInlineKeyBoardMessage(chatId, update));
-            String reqest2 = update.getCallbackQuery().toString();
-            Response[] responsesArray= new Response[]{
-                    new HelloRequest(),
-                    new ByeReqest(),
-                    new Covid()
-            };;
-            for(int i = 0; i < responsesArray.length; ++i ){
-                if (responsesArray[i].name().equals(reqest2)){
-                    responsesArray[i].go(bot, update);
-                }
-            };
-            /*switch (chatId) {
-                case "США" -> bot.execute(send(chatId,  covid("ssha")));
-                case "России" -> bot.execute(send(chatId,  covid("rossiya")));
-                case "Германии" -> bot.execute(send(chatId,  covid("germaniya")));
-                case "Вьетнаме" -> bot.execute(send(chatId,  covid("vietnam")));
-                case "Италии" -> bot.execute(send(chatId,  covid("italiya")));
-                case "Тайвани" -> bot.execute(send(chatId,  covid("taivan")));
-                case "Франции" -> bot.execute(send(chatId,  covid("frantsiya")));
-                case "Южной Корее" -> bot.execute(send(chatId,  covid("yuzhnaya-koreya")));
-                case "Польше" -> bot.execute(send(chatId,  covid("polsha")));
-            }*/
+            bot.execute(keysMessage);
+
+            if(update.hasCallbackQuery()){
+                System.out.println("in class");
+            }
+
         } catch (TelegramApiException e) {
             e.printStackTrace();
-        } /*catch (IOException e) {
-            e.printStackTrace();
-        }*/
+        }
     }
 
     private static Document getPage(String ssilka) throws IOException {
