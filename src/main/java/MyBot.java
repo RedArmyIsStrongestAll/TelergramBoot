@@ -31,9 +31,9 @@ public class MyBot extends TelegramLongPollingBot {
             String request = update.getMessage().getText();
             for (int i = 0; i < responseRegistry.getSizeListResponse(); ++i) {
                 if (responseRegistry.getResponseName(i).equals(request)) {
+                    responseRegistry.setNumberResponseForCallbackQuery(i);
                     Response response = responseRegistry.getResponse(i);
                     response.go(this, update);
-                    responseRegistry.setNumberResponseForCallbackQuery(i);
                 }
             }
         }

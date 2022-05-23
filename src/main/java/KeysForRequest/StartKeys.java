@@ -24,8 +24,7 @@ public class StartKeys {
         keyRaw.add(keyFirstRow1);
         KeyboardRow keyFirstRow2 = new KeyboardRow();
         keyFirstRow2.add(new KeyboardButton("Коронавирус"));
-        keyFirstRow2.add(new KeyboardButton("Коронавирус"));
-        keyFirstRow2.add(new KeyboardButton("Коронавирус"));
+        keyFirstRow2.add(new KeyboardButton("Курс"));
         keyRaw.add(keyFirstRow2);
 
         replykeyboardmarkup.setKeyboard(keyRaw);

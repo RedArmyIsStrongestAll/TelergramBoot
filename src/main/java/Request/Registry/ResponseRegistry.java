@@ -1,9 +1,6 @@
 package Request.Registry;
 
-import Request.ByeReqest;
-import Request.Covid;
-import Request.HelloRequest;
-import Request.Response;
+import Request.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +21,7 @@ public class ResponseRegistry {
         listResponse.add(new HelloRequest());
         listResponse.add(new ByeReqest());
         listResponse.add(new Covid());
+        listResponse.add(new Courses());
     }
 
     public int getSizeListResponse(){
